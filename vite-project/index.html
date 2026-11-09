@@ -1,13 +1,392 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vite-project</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Integrity and Dignity Club: Be Honest. Be Respectful. Be the Change." />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <title>Integrity and Dignity Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/tailwind.config.js"></script>
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+</head>
+
+<body class="bg-white font-sans text-navy-900 antialiased">
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 text-white transition-all duration-300">
+    <nav class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main">
+      <a href="#home" class="flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-full bg-gold-500 text-navy-900">
+          <i data-lucide="scale" class="h-5 w-5"></i>
+        </span>
+        <span class="font-display text-base font-bold leading-tight sm:text-lg">
+          Integrity and Dignity<span
+            class="block text-xs font-semibold tracking-[0.18em] text-gold-400 uppercase">Club</span>
+        </span>
+      </a>
+      <ul class="hidden items-center gap-6 text-sm font-semibold xl:flex">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About Us</a></li>
+        <li><a href="#values" class="nav-link">Our Values</a></li>
+        <li><a href="#members" class="nav-link">Members</a></li>
+        <li><a href="#activities" class="nav-link">Activities</a></li>
+        <li><a href="#integrity" class="nav-link">Integrity in Action</a></li>
+        <li><a href="#join" class="nav-link">Join Our Club</a></li>
+        <li><a href="#contact" class="nav-link">Contact Us</a></li>
+      </ul>
+      <button id="nav-toggle" type="button"
+        class="grid h-11 w-11 place-items-center rounded-full border border-current/30 xl:hidden" aria-expanded="false"
+        aria-controls="mobile-menu" aria-label="Open menu">
+        <i data-lucide="menu" class="h-5 w-5"></i>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="hidden border-t border-white/10 bg-navy-900 text-white xl:hidden">
+      <ul class="mx-auto flex max-w-7xl flex-col px-4 py-4 font-semibold">
+        <li><a href="#home" class="mobile-link">Home</a></li>
+        <li><a href="#about" class="mobile-link">About Us</a></li>
+        <li><a href="#values" class="mobile-link">Our Values</a></li>
+        <li><a href="#members" class="mobile-link">Members</a></li>
+        <li><a href="#activities" class="mobile-link">Activities</a></li>
+        <li><a href="#integrity" class="mobile-link">Integrity in Action</a></li>
+        <li><a href="#join" class="mobile-link">Join Our Club</a></li>
+        <li><a href="#contact" class="mobile-link">Contact Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="relative isolate flex min-h-[92vh] items-center overflow-hidden bg-navy-900 text-white">
+      <img
+        src="https://images.pexels.com/photos/7683892/pexels-photo-7683892.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+        alt="College students talking together outdoors on campus"
+        class="hero-zoom absolute inset-0 -z-20 h-full w-full object-cover opacity-45" />
+      <div class="absolute inset-0 -z-10 bg-gradient-to-br from-navy-900 via-navy-900/85 to-navy-800/50"></div>
+      <div class="mx-auto w-full max-w-7xl px-4 pb-24 pt-32 sm:px-6 lg:px-8">
+        <p
+          class="reveal inline-flex items-center gap-2 rounded-full border border-gold-400/50 bg-navy-900/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
+          <i data-lucide="sparkles" class="h-4 w-4"></i>
+          Student Leadership Organization
+        </p>
+        <h1 class="reveal mt-6 max-w-3xl font-display text-5xl font-bold leading-[1.1] sm:text-6xl lg:text-7xl">
+          Integrity and <span class="text-gold-400">Dignity</span> Club
+        </h1>
+        <p class="reveal mt-6 font-display text-2xl italic text-gold-200 sm:text-3xl">Be Honest. Be Respectful. Be the
+          Change.</p>
+        <p class="reveal mt-6 max-w-2xl text-lg leading-relaxed text-navy-100">
+          We are a community of students who choose honesty in small moments, respect in every conversation, and action
+          when the world needs it most.
+        </p>
+        <div class="reveal mt-10 flex flex-wrap gap-4">
+          <a href="#join"
+            class="inline-flex items-center gap-2 rounded-full bg-gold-500 px-7 py-3.5 font-semibold text-navy-900 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-0.5 hover:bg-gold-400">
+            Join Our Club
+            <i data-lucide="arrow-right" class="h-4 w-4"></i>
+          </a>
+          <a href="#members"
+            class="inline-flex items-center gap-2 rounded-full border border-white/40 px-7 py-3.5 font-semibold text-white transition duration-300 hover:bg-white/10">
+            Meet the Members
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-24 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div class="reveal relative">
+          <img
+            src="https://images.pexels.com/photos/40259557/pexels-photo-40259557.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            alt="Students actively taking part in a lecture" loading="lazy"
+            class="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl shadow-navy-900/20" />
+          <div
+            class="absolute -bottom-6 -right-4 hidden rounded-2xl bg-navy-900 px-6 py-5 text-white shadow-xl sm:block">
+            <p class="font-display text-3xl font-bold text-gold-400">2</p>
+            <p class="text-sm text-navy-100">Active generations</p>
+          </div>
+        </div>
+        <div>
+          <p class="reveal eyebrow">About Us</p>
+          <h2 class="reveal mt-4 font-display text-4xl font-bold leading-[1.2] text-navy-900 sm:text-5xl">Character
+            first. Service always.</h2>
+          <p class="reveal mt-6 text-lg leading-relaxed text-navy-600">
+            The Integrity and Dignity Club is a student leadership organization built on one conviction: strong
+            communities are built by people who choose honesty, treat others with respect, and take responsibility for
+            the change they want to see.
+          </p>
+          <p class="reveal mt-4 leading-relaxed text-navy-600">
+            Through workshops, service projects, and open dialogue, we help students practice these values in their
+            studies, friendships, and communities.
+          </p>
+          <div class="mt-10 grid gap-6 sm:grid-cols-2">
+            <article class="reveal card-lift rounded-2xl border border-navy-100 bg-navy-50 p-6">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-navy-900 text-gold-400"><i data-lucide="eye"
+                  class="h-5 w-5"></i></span>
+              <h3 class="mt-5 font-display text-xl font-bold text-navy-900">Our Vision</h3>
+              <p class="mt-2 text-navy-600">A campus and community where integrity and dignity guide every decision.</p>
+            </article>
+            <article class="reveal card-lift rounded-2xl border border-navy-100 bg-navy-50 p-6">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-navy-900 text-gold-400"><i
+                  data-lucide="target" class="h-5 w-5"></i></span>
+              <h3 class="mt-5 font-display text-xl font-bold text-navy-900">Our Mission</h3>
+              <p class="mt-2 text-navy-600">To develop principled student leaders through training, service, and honest
+                conversation.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="values" class="bg-navy-50 py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <p class="reveal eyebrow">Our Values</p>
+          <h2 class="reveal mt-4 font-display text-4xl font-bold text-navy-900 sm:text-5xl">The principles we live by
+          </h2>
+          <p class="reveal mt-5 text-lg text-navy-600">Every activity, every decision, and every member is measured
+            against these six commitments.</p>
+        </div>
+        <div id="values-grid" class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+      </div>
+    </section>
+
+    <section id="members" class="py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <p class="reveal eyebrow">Generations and Members</p>
+          <h2 class="reveal mt-4 font-display text-4xl font-bold text-navy-900 sm:text-5xl">The people behind the club
+          </h2>
+          <p class="reveal mt-5 text-lg text-navy-600">Meet the leaders and members of each generation.</p>
+        </div>
+        <div id="generations-root" class="mt-16"></div>
+      </div>
+    </section>
+
+    <section id="activities" class="bg-navy-50 py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <p class="reveal eyebrow">Activities and Events</p>
+          <h2 class="reveal mt-4 font-display text-4xl font-bold text-navy-900 sm:text-5xl">What we are doing together
+          </h2>
+          <p class="reveal mt-5 text-lg text-navy-600">Workshops, service days, and dialogues that put our values into
+            practice.</p>
+        </div>
+        <div id="activities-grid" class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"></div>
+      </div>
+    </section>
+
+    <section id="integrity" class="py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <p class="reveal eyebrow">Integrity in Action</p>
+          <h2 class="reveal mt-4 font-display text-4xl font-bold text-navy-900 sm:text-5xl">Practice integrity every
+            week</h2>
+          <p class="reveal mt-5 text-lg text-navy-600">Small, honest choices repeated consistently become a character we
+            can trust.</p>
+        </div>
+        <div id="integrity-root" class="mt-14"></div>
+      </div>
+    </section>
+
+    <section id="join" class="relative overflow-hidden bg-navy-900 py-24 text-white sm:py-28">
+      <div class="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-gold-500/10 blur-3xl"></div>
+      <div class="relative mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
+        <div class="lg:col-span-2">
+          <p class="reveal eyebrow text-gold-400">Join Our Club</p>
+          <h2 class="reveal mt-4 font-display text-4xl font-bold sm:text-5xl">Lead with honesty. Serve with dignity.
+          </h2>
+          <p class="reveal mt-6 leading-relaxed text-navy-100">
+            Membership is open to students who share our commitment to honesty, respect, and service. Applications are
+            reviewed by club leadership.
+          </p>
+          <ul class="reveal mt-8 space-y-4">
+            <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                class="mt-0.5 h-5 w-5 shrink-0 text-gold-400"></i><span class="text-navy-100">Weekly integrity
+                challenges and ethical discussions</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                class="mt-0.5 h-5 w-5 shrink-0 text-gold-400"></i><span class="text-navy-100">Leadership workshops and
+                mentoring</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                class="mt-0.5 h-5 w-5 shrink-0 text-gold-400"></i><span class="text-navy-100">Service projects in our
+                community</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                class="mt-0.5 h-5 w-5 shrink-0 text-gold-400"></i><span class="text-navy-100">A supportive network of
+                peers across generations</span></li>
+          </ul>
+        </div>
+
+        <div class="reveal rounded-3xl bg-white p-6 text-navy-900 shadow-2xl sm:p-10 lg:col-span-3">
+          <div id="join-card">
+            <h3 class="font-display text-2xl font-bold">Membership application</h3>
+            <p class="mt-2 text-sm text-navy-600">Fields marked with * are required.</p>
+            <form id="join-form" class="mt-8 grid gap-5 sm:grid-cols-2" novalidate>
+              <div class="sm:col-span-2">
+                <label for="join-fullName" class="form-label">Full name *</label>
+                <input id="join-fullName" name="fullName" type="text" autocomplete="name" class="field" />
+                <p class="field-error" data-error-for="fullName" role="alert"></p>
+              </div>
+              <div>
+                <label for="join-email" class="form-label">Email *</label>
+                <input id="join-email" name="email" type="email" autocomplete="email" class="field" />
+                <p class="field-error" data-error-for="email" role="alert"></p>
+              </div>
+              <div>
+                <label for="join-phone" class="form-label">Phone or Telegram *</label>
+                <input id="join-phone" name="phone" type="text" autocomplete="tel"
+                  placeholder="+1 555 123 4567 or @username" class="field" />
+                <p class="field-error" data-error-for="phone" role="alert"></p>
+              </div>
+              <div>
+                <label for="join-gender" class="form-label">Gender (optional)</label>
+                <select id="join-gender" name="gender" class="field">
+                  <option value="">Prefer not to say</option>
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Other">Other</option>
+                </select>
+                <p class="field-error" data-error-for="gender" role="alert"></p>
+              </div>
+              <div>
+                <label for="join-generation" class="form-label">Generation or status *</label>
+                <select id="join-generation" name="generation" class="field">
+                  <option value="">Select one</option>
+                  <option value="2027">Generation 2027</option>
+                  <option value="2026">Generation 2026</option>
+                  <option value="applicant">Applicant (not yet assigned)</option>
+                </select>
+                <p class="field-error" data-error-for="generation" role="alert"></p>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="join-schoolClass" class="form-label">School and class *</label>
+                <input id="join-schoolClass" name="schoolClass" type="text"
+                  placeholder="e.g. Faculty of Business, Year 2" class="field" />
+                <p class="field-error" data-error-for="schoolClass" role="alert"></p>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="join-motivation" class="form-label">Why do you want to join? *</label>
+                <textarea id="join-motivation" name="motivation" rows="5"
+                  placeholder="Share what integrity and dignity mean to you and how you want to contribute."
+                  class="field"></textarea>
+                <p class="field-error" data-error-for="motivation" role="alert"></p>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="flex items-start gap-3 text-sm text-navy-700">
+                  <input type="checkbox" name="agreeValues"
+                    class="mt-1 h-4 w-4 shrink-0 rounded border-navy-300 text-navy-900 focus:ring-gold-500" />
+                  <span>I agree to uphold the club's values of honesty, respect, dignity, responsibility, courage, and
+                    service. *</span>
+                </label>
+                <p class="field-error" data-error-for="agreeValues" role="alert"></p>
+              </div>
+              <div class="sm:col-span-2">
+                <button type="submit" class="btn-submit w-full sm:w-auto">
+                  <span data-label>Submit application</span>
+                  <span data-loading class="hidden items-center gap-2"><span class="spinner"></span>Submitting...</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div id="join-success" class="hidden py-10 text-center" role="status">
+            <span class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-100 text-emerald-700"><i
+                data-lucide="check" class="h-8 w-8"></i></span>
+            <h3 class="mt-6 font-display text-2xl font-bold">Application received</h3>
+            <p class="mt-3 text-navy-600">Thank you for applying. Your application is now pending review. A confirmation
+              has been sent to your email.</p>
+            <p class="mt-6 text-sm text-navy-500">Registration ID</p>
+            <p id="registration-id" class="mt-1 font-mono text-lg font-semibold text-navy-900"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-24 sm:py-28">
+      <div class="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div>
+          <p class="reveal eyebrow">Contact Us</p>
+          <h2 class="reveal mt-4 font-display text-4xl font-bold text-navy-900 sm:text-5xl">Let's start a conversation
+          </h2>
+          <p class="reveal mt-6 text-lg leading-relaxed text-navy-600">Questions about joining, partnering, or our
+            events? Send us a message and a club leader will reply.</p>
+          <div class="reveal mt-10 flex items-center gap-4 rounded-2xl bg-navy-50 p-6">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-900 text-gold-400"><i
+                data-lucide="mail" class="h-5 w-5"></i></span>
+            <div>
+              <p class="text-sm font-semibold text-navy-500">Email</p>
+              <a id="contact-email" href="#contact" class="font-semibold text-navy-900 hover:text-gold-600"></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal rounded-3xl border border-navy-100 bg-white p-6 shadow-xl shadow-navy-900/5 sm:p-10">
+          <div id="contact-card">
+            <form id="contact-form" class="grid gap-5" novalidate>
+              <div>
+                <label for="contact-fullName" class="form-label">Your name *</label>
+                <input id="contact-fullName" name="fullName" type="text" autocomplete="name" class="field" />
+                <p class="field-error" data-error-for="fullName" role="alert"></p>
+              </div>
+              <div>
+                <label for="contact-form-email" class="form-label">Email *</label>
+                <input id="contact-form-email" name="email" type="email" autocomplete="email" class="field" />
+                <p class="field-error" data-error-for="email" role="alert"></p>
+              </div>
+              <div>
+                <label for="contact-message" class="form-label">Message *</label>
+                <textarea id="contact-message" name="message" rows="6" class="field"></textarea>
+                <p class="field-error" data-error-for="message" role="alert"></p>
+              </div>
+              <div>
+                <button type="submit" class="btn-submit w-full sm:w-auto">
+                  <span data-label>Send message</span>
+                  <span data-loading class="hidden items-center gap-2"><span class="spinner"></span>Sending...</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-navy-900 text-navy-100">
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8">
+      <div>
+        <p class="font-display text-2xl font-bold text-white">Integrity and Dignity Club</p>
+        <p class="mt-3 font-display text-lg italic text-gold-300">Be Honest. Be Respectful. Be the Change.</p>
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-gold-400">Explore</p>
+        <ul class="mt-4 grid grid-cols-2 gap-3 text-sm">
+          <li><a href="#about" class="footer-link">About Us</a></li>
+          <li><a href="#values" class="footer-link">Our Values</a></li>
+          <li><a href="#members" class="footer-link">Members</a></li>
+          <li><a href="#activities" class="footer-link">Activities</a></li>
+          <li><a href="#integrity" class="footer-link">Integrity in Action</a></li>
+          <li><a href="#join" class="footer-link">Join Our Club</a></li>
+          <li><a href="#contact" class="footer-link">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-gold-400">Follow Us</p>
+        <div id="footer-social" class="mt-4 flex flex-wrap gap-3"></div>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <p class="mx-auto max-w-7xl px-4 py-6 text-sm text-navy-200 sm:px-6 lg:px-8">Integrity and Dignity Club. All
+        rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite" class="toast"></div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>
