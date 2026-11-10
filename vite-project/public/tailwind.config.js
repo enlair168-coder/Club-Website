@@ -2,8 +2,8 @@ tailwind.config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
       },
       colors: {
         navy: {
@@ -12,7 +12,7 @@ tailwind.config = {
         },
         gold: {
           50: '#FBF7EA', 100: '#F5EBC8', 200: '#EBD78F', 300: '#DFC158', 400: '#D4AF37',
-          500: '#C9A227', 600: '#A8851C', 700: '#846816',
+          500: '#C9A227', 600: '#D9A441', 700: '#846816',
         },
       },
     },

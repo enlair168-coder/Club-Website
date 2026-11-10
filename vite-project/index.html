@@ -9,14 +9,15 @@
   <title>Integrity and Dignity Club</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/tailwind.config.js"></script>
   <meta property="og:image" content="https://bolt.new/static/og_default.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+
 </head>
 
 <body class="bg-white font-sans text-navy-900 antialiased">
@@ -67,9 +68,7 @@
 
   <main>
     <section id="home" class="relative isolate flex min-h-[92vh] items-center overflow-hidden bg-navy-900 text-white">
-      <img
-        src="https://images.pexels.com/photos/7683892/pexels-photo-7683892.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-        alt="College students talking together outdoors on campus"
+      <img src="public/image/hero-banner.jpg" alt="College students talking together outdoors on campus"
         class="hero-zoom absolute inset-0 -z-20 h-full w-full object-cover opacity-45" />
       <div class="absolute inset-0 -z-10 bg-gradient-to-br from-navy-900 via-navy-900/85 to-navy-800/50"></div>
       <div class="mx-auto w-full max-w-7xl px-4 pb-24 pt-32 sm:px-6 lg:px-8">
@@ -104,9 +103,7 @@
     <section id="about" class="py-24 sm:py-28">
       <div class="mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <div class="reveal relative">
-          <img
-            src="https://images.pexels.com/photos/40259557/pexels-photo-40259557.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-            alt="Students actively taking part in a lecture" loading="lazy"
+          <img src="public/image/active-gen.jpg" alt="Students actively taking part in a lecture" loading="lazy"
             class="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl shadow-navy-900/20" />
           <div
             class="absolute -bottom-6 -right-4 hidden rounded-2xl bg-navy-900 px-6 py-5 text-white shadow-xl sm:block">
@@ -170,7 +167,6 @@
         <div id="generations-root" class="mt-16"></div>
       </div>
     </section>
-
     <section id="activities" class="bg-navy-50 py-24 sm:py-28">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">
@@ -180,10 +176,11 @@
           <p class="reveal mt-5 text-lg text-navy-600">Workshops, service days, and dialogues that put our values into
             practice.</p>
         </div>
-        <div id="activities-grid" class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"></div>
+        <div id="activities-filters" class="mt-12 flex flex-wrap justify-center gap-3" role="group"
+          aria-label="Filter activities by category"></div>
+        <div id="activities-grid" class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
       </div>
     </section>
-
     <section id="integrity" class="py-24 sm:py-28">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">

@@ -1,40 +1,40 @@
 import { members, generations } from './data/members.js';
 import {
-    activities,
-    values,
-    weeklyChallenge,
-    ethicalScenario,
-    reflections,
-    inspirations,
-    socialLinks,
-    contactEmail,
+  activities,
+  values,
+  weeklyChallenge,
+  ethicalScenario,
+  reflections,
+  inspirations,
+  socialLinks,
+  contactEmail,
 } from './data/content.js';
 
 const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 
-function escapeHtml(value) {
-    return String(value ?? '').replace(/[&<>"']/g, (char) => ESCAPES[char]);
+export function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (char) => ESCAPES[char]);
 }
 
 function avatar(member, iconSize) {
-    if (member.photo) {
-        return `<img src="${escapeHtml(member.photo)}" alt="Portrait of ${escapeHtml(member.name)}" loading="lazy" class="h-full w-full object-cover" />`;
-    }
-    return `<div class="grid h-full w-full place-items-center bg-navy-100 text-navy-400"><i data-lucide="user" class="${iconSize}"></i></div>`;
+  if (member.photo) {
+    return `<img src="${escapeHtml(member.photo)}" alt="Portrait of ${escapeHtml(member.name)}" loading="lazy" class="h-full w-full object-cover" />`;
+  }
+  return `<div class="grid h-full w-full place-items-center bg-navy-100 text-navy-400"><i data-lucide="user" class="${iconSize}"></i></div>`;
 }
 
 function socialLinksFor(social = {}) {
-    return Object.entries(social)
-        .filter(([, url]) => url)
-        .map(
-            ([name, url]) =>
-                `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" class="social-link text-navy-700 border-navy-200 hover:border-gold-500 capitalize">${escapeHtml(name)}</a>`,
-        )
-        .join('');
+  return Object.entries(social)
+    .filter(([, url]) => url)
+    .map(
+      ([name, url]) =>
+        `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" class="social-link text-navy-700 border-navy-200 hover:border-gold-500 capitalize">${escapeHtml(name)}</a>`,
+    )
+    .join('');
 }
 
 function leaderCard(member) {
-    return `
+  return `
     <article class="reveal card-lift grid overflow-hidden rounded-3xl bg-navy-900 text-white shadow-xl shadow-navy-900/20 md:grid-cols-[18rem_1fr]">
       <div class="h-72 md:h-full">${avatar(member, 'h-16 w-16 text-navy-300')}</div>
       <div class="flex flex-col justify-center p-8 sm:p-10">
@@ -56,8 +56,8 @@ function leaderCard(member) {
 }
 
 function memberCard(member, index) {
-    if (member.isLeader) return leaderCard(member);
-    return `
+  if (member.isLeader) return leaderCard(member);
+  return `
     <article class="reveal card-lift flex flex-col rounded-2xl border border-navy-100 bg-white p-6 shadow-sm" style="transition-delay: ${index * 80}ms">
       <div class="flex items-center gap-4">
         <div class="h-20 w-20 shrink-0 overflow-hidden rounded-full ring-2 ring-gold-300">${avatar(member, 'h-8 w-8')}</div>
@@ -75,10 +75,10 @@ function memberCard(member, index) {
 }
 
 function generationBlock(generation) {
-    const list = members.filter((member) => member.generation === generation.year);
-    const leader = list.find((member) => member.isLeader);
-    const others = list.filter((member) => !member.isLeader);
-    return `
+  const list = members.filter((member) => member.generation === generation.year);
+  const leader = list.find((member) => member.isLeader);
+  const others = list.filter((member) => !member.isLeader);
+  return `
     <div class="mt-20 first:mt-0">
       <div class="reveal flex flex-col gap-3 border-b border-navy-100 pb-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
@@ -96,7 +96,7 @@ function generationBlock(generation) {
 }
 
 function valueCard(value, index) {
-    return `
+  return `
     <div class="reveal card-lift rounded-2xl bg-white p-6 shadow-sm ring-1 ring-navy-100" style="transition-delay: ${index * 80}ms">
       <span class="grid h-12 w-12 place-items-center rounded-xl bg-gold-50 text-gold-600"><i data-lucide="${escapeHtml(value.icon)}" class="h-6 w-6"></i></span>
       <h3 class="mt-5 font-display text-xl font-bold text-navy-900">${escapeHtml(value.title)}</h3>
@@ -105,31 +105,56 @@ function valueCard(value, index) {
 }
 
 function activityCard(activity, index) {
-    return `
-    <article class="reveal card-lift flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-navy-100" style="transition-delay: ${index * 100}ms">
-      <div class="relative aspect-[4/3] overflow-hidden">
-        <img src="${escapeHtml(activity.image)}" alt="${escapeHtml(activity.imageAlt)}" loading="lazy" class="h-full w-full object-cover transition duration-700 hover:scale-105" />
-        <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-semibold text-navy-800 shadow">${escapeHtml(activity.category)}</span>
+  const details = activity.details ?? [];
+  return `
+    <article class="activity-card card-lift flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-navy-100" style="animation-delay: ${index * 70}ms">
+      <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-navy-200 to-navy-400">
+        <img src="${escapeHtml(activity.image)}" alt="${escapeHtml(activity.imageAlt)}" loading="lazy" onerror="this.remove()" class="h-full w-full object-cover transition duration-700 hover:scale-105" />
+        <span class="absolute left-4 top-4 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-navy-800 shadow">${escapeHtml(activity.category)}</span>
       </div>
-      <div class="flex flex-1 flex-col p-6">
-        <p class="text-sm font-semibold text-gold-700">${escapeHtml(activity.date)}</p>
-        <h3 class="mt-2 font-display text-xl font-bold text-navy-900">${escapeHtml(activity.title)}</h3>
-        <p class="mt-3 text-sm leading-relaxed text-navy-600">${escapeHtml(activity.description)}</p>
-        <details class="group mt-auto border-t border-navy-100 pt-4 [&:not([open])]:mt-6">
-          <summary class="flex cursor-pointer items-center justify-between text-sm font-semibold text-navy-700">
-            Details
-            <i data-lucide="plus" class="h-4 w-4 transition duration-300 group-open:rotate-45"></i>
+      <div class="flex flex-1 flex-col p-6 sm:p-7">
+        <p class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-600">
+          <i data-lucide="calendar" class="h-4 w-4"></i>${escapeHtml(activity.date)}
+        </p>
+        <h3 class="mt-3 font-display text-2xl font-bold leading-snug text-navy-900">${escapeHtml(activity.title)}</h3>
+        <p class="mt-3 leading-relaxed text-navy-600">${escapeHtml(activity.description)}</p>
+        ${details.length
+      ? `<details class="group mt-auto pt-6">
+          <summary class="inline-flex cursor-pointer list-none items-center gap-2 rounded-full border border-navy-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 shadow-sm transition hover:border-navy-400 hover:bg-navy-50 [&::-webkit-details-marker]:hidden">
+            View details
+            <i data-lucide="arrow-right" class="h-4 w-4 transition duration-300 group-open:rotate-90"></i>
           </summary>
-          <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-navy-600">
-            ${activity.details.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+          <ul class="mt-4 list-disc space-y-1 pl-5 text-sm text-navy-600">
+            ${details.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
-        </details>
+        </details>`
+      : ''}
       </div>
     </article>`;
 }
 
+function activityFilters(selected) {
+  const categories = ['All', ...new Set(activities.map((activity) => activity.category))];
+  return categories
+    .map((category) => {
+      const active = category === selected;
+      const look = active
+        ? 'border-navy-900 bg-navy-900 font-semibold text-white'
+        : 'border-navy-200 bg-white font-medium text-navy-700 hover:border-navy-400 hover:bg-navy-50';
+      return `<button type="button" data-filter="${escapeHtml(category)}" aria-pressed="${active}" class="rounded-full border px-5 py-2.5 text-sm transition ${look}">${escapeHtml(category)}</button>`;
+    })
+    .join('');
+}
+
+function showActivities(category = 'All') {
+  const visible = category === 'All' ? activities : activities.filter((activity) => activity.category === category);
+  document.getElementById('activities-filters').innerHTML = activityFilters(category);
+  document.getElementById('activities-grid').innerHTML = visible.map(activityCard).join('');
+  window.lucide?.createIcons();
+}
+
 function integrityContent() {
-    return `
+  return `
     <div class="grid gap-8 lg:grid-cols-2">
       <article class="reveal card-lift rounded-3xl bg-navy-900 p-8 text-white shadow-xl shadow-navy-900/20 sm:p-10">
         <span class="inline-flex items-center gap-2 rounded-full bg-gold-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy-900">
@@ -156,15 +181,15 @@ function integrityContent() {
 
     <div class="mt-8 grid gap-6 md:grid-cols-3">
       ${reflections
-            .map(
-                (reflection, index) => `
+      .map(
+        (reflection, index) => `
         <figure class="reveal card-lift rounded-2xl bg-navy-50 p-6" style="transition-delay: ${index * 100}ms">
           <i data-lucide="quote" class="h-7 w-7 text-gold-600"></i>
           <blockquote class="mt-4 leading-relaxed text-navy-800">${escapeHtml(reflection.quote)}</blockquote>
           <figcaption class="mt-5 text-sm font-semibold text-navy-500">${escapeHtml(reflection.author)}</figcaption>
         </figure>`,
-            )
-            .join('')}
+      )
+      .join('')}
     </div>
 
     <div class="reveal mt-12 rounded-3xl bg-gradient-to-r from-navy-900 to-navy-700 px-8 py-12 text-center text-white sm:px-12">
@@ -176,21 +201,29 @@ function integrityContent() {
 }
 
 function renderSocialLinks() {
-    return socialLinks
-        .map(
-            (link) =>
-                `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="social-link">${escapeHtml(link.label)}</a>`,
-        )
-        .join('');
+  return socialLinks
+    .map(
+      (link) =>
+        `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="social-link">${escapeHtml(link.label)}</a>`,
+    )
+    .join('');
 }
 
 export function renderPublicContent() {
-    document.getElementById('values-grid').innerHTML = values.map(valueCard).join('');
-    document.getElementById('generations-root').innerHTML = generations.map(generationBlock).join('');
-    document.getElementById('activities-grid').innerHTML = activities.map(activityCard).join('');
-    document.getElementById('integrity-root').innerHTML = integrityContent();
-    document.getElementById('footer-social').innerHTML = renderSocialLinks();
-    const email = document.getElementById('contact-email');
-    email.textContent = contactEmail;
-    email.href = `mailto:${contactEmail}`;
+  document.getElementById('values-grid').innerHTML = values.map(valueCard).join('');
+  document.getElementById('generations-root').innerHTML = generations.map(generationBlock).join('');
+  showActivities();
+  document.getElementById('activities-filters').addEventListener('click', (event) => {
+    const button = event.target.closest('[data-filter]');
+    if (!button) return;
+    const category = button.dataset.filter;
+    showActivities(category);
+    // The chips are redrawn, so give keyboard focus back to the one that was pressed.
+    [...document.querySelectorAll('#activities-filters [data-filter]')].find((b) => b.dataset.filter === category)?.focus();
+  });
+  document.getElementById('integrity-root').innerHTML = integrityContent();
+  document.getElementById('footer-social').innerHTML = renderSocialLinks();
+  const email = document.getElementById('contact-email');
+  email.textContent = contactEmail;
+  email.href = `mailto:${contactEmail}`;
 }
