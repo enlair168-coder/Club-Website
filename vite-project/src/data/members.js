@@ -67,7 +67,7 @@ export const members = [
         name: 'SOPHY MOEUN',
         position: 'Club Leader',
         responsibilities: ['Lead and coordinate club'],
-        photo: 'public/image/',
+        photo: 'public/image/leader26.jpg',
     },
     {
         id: 'g2026-01',
@@ -77,7 +77,7 @@ export const members = [
         position: 'Member',
         responsibilities: ['Support project activities.',
             'Prepare activity materials.',],
-        photo: 'public/image/',
+        photo: 'public/image/member1-26.jpg',
 
     },
     {
@@ -89,6 +89,7 @@ export const members = [
         responsibilities: ['Plan Club Projects',
             'Organize Club Events',
         ],
+        photo: 'public/image/member26.jpg',
     },
 ]
 

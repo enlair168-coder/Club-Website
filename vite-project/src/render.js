@@ -1,6 +1,7 @@
 import { members, generations } from './data/members.js';
 import {
   activities,
+  activityCategories,
   values,
   weeklyChallenge,
   ethicalScenario,
@@ -12,7 +13,7 @@ import {
 
 const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 
-export function escapeHtml(value) {
+function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (char) => ESCAPES[char]);
 }
 
@@ -105,52 +106,70 @@ function valueCard(value, index) {
 }
 
 function activityCard(activity, index) {
-  const details = activity.details ?? [];
   return `
-    <article class="activity-card card-lift flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-navy-100" style="animation-delay: ${index * 70}ms">
-      <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-navy-200 to-navy-400">
-        <img src="${escapeHtml(activity.image)}" alt="${escapeHtml(activity.imageAlt)}" loading="lazy" onerror="this.remove()" class="h-full w-full object-cover transition duration-700 hover:scale-105" />
-        <span class="absolute left-4 top-4 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-navy-800 shadow">${escapeHtml(activity.category)}</span>
+    <article class="activity-card reveal card-lift flex flex-col overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-sm" style="transition-delay: ${index * 80}ms">
+      <div class="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
+        <img src="${escapeHtml(activity.image)}" alt="${escapeHtml(activity.imageAlt)}" loading="lazy" class="h-full w-full object-cover transition duration-500 activity-image" />
+        <span class="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-navy-800 shadow-sm">${escapeHtml(activity.category)}</span>
       </div>
-      <div class="flex flex-1 flex-col p-6 sm:p-7">
-        <p class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-600">
-          <i data-lucide="calendar" class="h-4 w-4"></i>${escapeHtml(activity.date)}
+      <div class="flex flex-1 flex-col p-6">
+        <p class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-600">
+          <i data-lucide="calendar" class="h-4 w-4"></i>${escapeHtml(activity.date ?? activity.status)}
         </p>
-        <h3 class="mt-3 font-display text-2xl font-bold leading-snug text-navy-900">${escapeHtml(activity.title)}</h3>
-        <p class="mt-3 leading-relaxed text-navy-600">${escapeHtml(activity.description)}</p>
-        ${details.length
-      ? `<details class="group mt-auto pt-6">
-          <summary class="inline-flex cursor-pointer list-none items-center gap-2 rounded-full border border-navy-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 shadow-sm transition hover:border-navy-400 hover:bg-navy-50 [&::-webkit-details-marker]:hidden">
-            View details
-            <i data-lucide="arrow-right" class="h-4 w-4 transition duration-300 group-open:rotate-90"></i>
+        <h3 class="mt-3 font-display text-xl font-bold leading-snug text-navy-900">${escapeHtml(activity.title)}</h3>
+        <p class="mt-3 text-sm leading-relaxed text-navy-600">${escapeHtml(activity.description)}</p>
+        <details class="group mt-auto border-t border-navy-100 pt-4 [&:not([open])]:mt-6">
+          <summary class="flex cursor-pointer items-center justify-between text-sm font-semibold text-navy-700">
+            Details
+            <i data-lucide="plus" class="h-4 w-4 transition duration-300 group-open:rotate-45"></i>
           </summary>
-          <ul class="mt-4 list-disc space-y-1 pl-5 text-sm text-navy-600">
-            ${details.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+          <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-navy-600">
+            ${activity.details.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
-        </details>`
-      : ''}
+        </details>
       </div>
     </article>`;
 }
 
-function activityFilters(selected) {
-  const categories = ['All', ...new Set(activities.map((activity) => activity.category))];
-  return categories
-    .map((category) => {
-      const active = category === selected;
-      const look = active
-        ? 'border-navy-900 bg-navy-900 font-semibold text-white'
-        : 'border-navy-200 bg-white font-medium text-navy-700 hover:border-navy-400 hover:bg-navy-50';
-      return `<button type="button" data-filter="${escapeHtml(category)}" aria-pressed="${active}" class="rounded-full border px-5 py-2.5 text-sm transition ${look}">${escapeHtml(category)}</button>`;
-    })
+function renderActivityFilters(activeCategory) {
+  document.getElementById('activities-filters').innerHTML = activityCategories
+    .map(
+      (category) => `
+      <button type="button" data-category="${escapeHtml(category)}" aria-pressed="${category === activeCategory}"
+        class="activity-filter ${category === activeCategory ? 'is-active' : ''}">${escapeHtml(category)}</button>`,
+    )
     .join('');
 }
 
-function showActivities(category = 'All') {
+function renderActivityGrid(category) {
   const visible = category === 'All' ? activities : activities.filter((activity) => activity.category === category);
-  document.getElementById('activities-filters').innerHTML = activityFilters(category);
   document.getElementById('activities-grid').innerHTML = visible.map(activityCard).join('');
   window.lucide?.createIcons();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.15 },
+  );
+  document.querySelectorAll('#activities-grid .reveal').forEach((item) => observer.observe(item));
+}
+
+function initActivityFilters() {
+  let activeCategory = 'All';
+  const filters = document.getElementById('activities-filters');
+  filters.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-category]');
+    if (!button || button.dataset.category === activeCategory) return;
+    activeCategory = button.dataset.category;
+    renderActivityFilters(activeCategory);
+    renderActivityGrid(activeCategory);
+  });
+  renderActivityFilters(activeCategory);
+  renderActivityGrid(activeCategory);
 }
 
 function integrityContent() {
@@ -212,15 +231,7 @@ function renderSocialLinks() {
 export function renderPublicContent() {
   document.getElementById('values-grid').innerHTML = values.map(valueCard).join('');
   document.getElementById('generations-root').innerHTML = generations.map(generationBlock).join('');
-  showActivities();
-  document.getElementById('activities-filters').addEventListener('click', (event) => {
-    const button = event.target.closest('[data-filter]');
-    if (!button) return;
-    const category = button.dataset.filter;
-    showActivities(category);
-    // The chips are redrawn, so give keyboard focus back to the one that was pressed.
-    [...document.querySelectorAll('#activities-filters [data-filter]')].find((b) => b.dataset.filter === category)?.focus();
-  });
+  initActivityFilters();
   document.getElementById('integrity-root').innerHTML = integrityContent();
   document.getElementById('footer-social').innerHTML = renderSocialLinks();
   const email = document.getElementById('contact-email');
