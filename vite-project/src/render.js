@@ -200,15 +200,15 @@ function integrityContent() {
 
     <div class="mt-8 grid gap-6 md:grid-cols-3">
       ${reflections
-      .map(
-        (reflection, index) => `
+        .map(
+          (reflection, index) => `
         <figure class="reveal card-lift rounded-2xl bg-navy-50 p-6" style="transition-delay: ${index * 100}ms">
           <i data-lucide="quote" class="h-7 w-7 text-gold-600"></i>
           <blockquote class="mt-4 leading-relaxed text-navy-800">${escapeHtml(reflection.quote)}</blockquote>
           <figcaption class="mt-5 text-sm font-semibold text-navy-500">${escapeHtml(reflection.author)}</figcaption>
         </figure>`,
-      )
-      .join('')}
+        )
+        .join('')}
     </div>
 
     <div class="reveal mt-12 rounded-3xl bg-gradient-to-r from-navy-900 to-navy-700 px-8 py-12 text-center text-white sm:px-12">

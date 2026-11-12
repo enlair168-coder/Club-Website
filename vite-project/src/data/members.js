@@ -6,7 +6,7 @@ export const members = [
         name: 'ONCHU THIDA',
         position: 'Club Leader',
         responsibilities: ['Lead and coordinate club activities and meetings'],
-        photo: 'public/image/leader.jpg',
+        photo: '/image/leader.jpg',
     },
     {
         id: 'g2027-01',
@@ -16,7 +16,7 @@ export const members = [
         position: 'Vice Leader',
         responsibilities: ['Support the leader',
             'Supervise activities'],
-        photo: 'public/image/member4.jpg',
+        photo: '/image/member4.jpg',
     },
     {
         id: 'g2027-02',
@@ -26,7 +26,7 @@ export const members = [
         position: 'Secretary',
         responsibilities: ['Club announcements.',
             ' Record meetings'],
-        photo: 'public/image/member5.jpg',
+        photo: '/image/member5.jpg',
     },
     {
         id: 'g2027-03',
@@ -36,7 +36,7 @@ export const members = [
         position: 'Project Coordinator',
         responsibilities: ['Plan Club Projects.',
             'Monitor Club Projects'],
-        photo: 'public/image/member1.jpg',
+        photo: '/image/member1.jpg',
     },
     {
         id: 'g2027-04',
@@ -47,7 +47,7 @@ export const members = [
         responsibilities: ['Recruit and manage volunteers',
             'Assign task to volunteers',
         ],
-        photo: 'public/image/member3.jpg',
+        photo: '/image/member3.jpg',
     },
     {
         id: 'g2027-05',
@@ -58,7 +58,7 @@ export const members = [
         responsibilities: ['Organize club events ',
             'Prepare Materials For Event'
         ],
-        photo: 'public/image/member2.jpg',
+        photo: '/image/member2.jpg',
     },
     {
         id: 'g2026-leader',
@@ -67,7 +67,7 @@ export const members = [
         name: 'SOPHY MOEUN',
         position: 'Club Leader',
         responsibilities: ['Lead and coordinate club'],
-        photo: 'public/image/leader26.jpg',
+        photo: '/image/leader26.jpg',
     },
     {
         id: 'g2026-01',
@@ -77,7 +77,7 @@ export const members = [
         position: 'Member',
         responsibilities: ['Support project activities.',
             'Prepare activity materials.',],
-        photo: 'public/image/member1-26.jpg',
+        photo: '/image/member1-26.jpg',
 
     },
     {
@@ -89,7 +89,7 @@ export const members = [
         responsibilities: ['Plan Club Projects',
             'Organize Club Events',
         ],
-        photo: 'public/image/member26.jpg',
+        photo: '/image/member26.jpg',
     },
 ]
 

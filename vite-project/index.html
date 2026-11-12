@@ -9,33 +9,28 @@
   <title>Integrity and Dignity Club</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet" />
-  
-  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/tailwind.config.js"></script>
   <meta property="og:image" content="https://bolt.new/static/og_default.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
-
 </head>
 
 <body class="bg-white font-sans text-navy-900 antialiased">
   <header id="site-header" class="fixed inset-x-0 top-0 z-50 text-white transition-all duration-300">
     <nav class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main">
-
-
       <a href="#home" class="flex items-center gap-3">
-        <img src="public/image/logo.png" alt="Integrity and Dignity Club Logo" class="h-12 w-12 object-contain" />
-
+        <span class="grid h-10 w-10 place-items-center rounded-full bg-gold-500 text-navy-900">
+          <i data-lucide="scale" class="h-5 w-5"></i>
+        </span>
         <span class="font-display text-base font-bold leading-tight sm:text-lg">
-          Integrity and Dignity
-          <span class="block text-xs font-semibold tracking-[0.18em] text-gold-400 uppercase">
-            Club
-          </span>
+          Integrity and Dignity<span
+            class="block text-xs font-semibold tracking-[0.18em] text-gold-400 uppercase">Club</span>
         </span>
       </a>
-
       <ul class="hidden items-center gap-6 text-sm font-semibold xl:flex">
         <li><a href="#home" class="nav-link">Home</a></li>
         <li><a href="#about" class="nav-link">About Us</a></li>
@@ -103,7 +98,7 @@
     <section id="about" class="py-24 sm:py-28">
       <div class="mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <div class="reveal relative">
-          <img src="public/image/active-gen.jpg" alt="Students actively taking part in a lecture" loading="lazy"
+          <img src="public/image/discussion.jpg" alt="Students actively taking part in a lecture" loading="lazy"
             class="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl shadow-navy-900/20" />
           <div
             class="absolute -bottom-6 -right-4 hidden rounded-2xl bg-navy-900 px-6 py-5 text-white shadow-xl sm:block">
@@ -167,6 +162,7 @@
         <div id="generations-root" class="mt-16"></div>
       </div>
     </section>
+
     <section id="activities" class="bg-navy-50 py-24 sm:py-28">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">
@@ -176,11 +172,12 @@
           <p class="reveal mt-5 text-lg text-navy-600">Workshops, service days, and dialogues that put our values into
             practice.</p>
         </div>
-        <div id="activities-filters" class="mt-12 flex flex-wrap justify-center gap-3" role="group"
+        <div id="activities-filters" class="reveal mt-10 flex gap-3 overflow-x-auto pb-2 lg:justify-center"
           aria-label="Filter activities by category"></div>
-        <div id="activities-grid" class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
+        <div id="activities-grid" class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
       </div>
     </section>
+
     <section id="integrity" class="py-24 sm:py-28">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">
