@@ -18,7 +18,7 @@ export const values = [
   { title: 'Service', icon: 'hand-helping', description: 'We put our time and skills to work for the people around us.' },
 ]
 
-export const activityCategories = ['All', 'Awareness', 'Workshop', 'Leadership', 'Competition', 'Community', 'Discussion'];
+export const activityCategories = ['All', 'Awareness', 'Workshop', 'Leadership', 'Competition', 'Community', 'Discussion']
 
 export const activities = [
   {
@@ -28,7 +28,7 @@ export const activities = [
     description: 'A school-wide campaign using posters, short videos, and conversations to make integrity part of everyday student life.',
     date: null,
     status: 'To Be Announced',
-    image: 'https://images.pexels.com/photos/34162720/pexels-photo-34162720.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    image: '/image/activities/awareness.jpg',
     imageAlt: 'Students advocating for awareness in their school',
     details: ['Poster and short-video teams open to all generations', 'Classroom conversation guides provided', 'Campaign runs across the whole school'],
   },
@@ -39,7 +39,7 @@ export const activities = [
     description: 'Interactive sessions on empathy, inclusion, and how to treat every person with dignity.',
     date: null,
     status: 'To Be Announced',
-    image: 'https://images.pexels.com/photos/8369660/pexels-photo-8369660.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    image: '/image/activities/workshop.jpg',
     imageAlt: 'A diverse group engaging in a learning session',
     details: ['Small-group exercises on empathy and inclusion', 'Role-play scenarios with guided feedback', 'Open to members and applicants'],
   },
@@ -50,7 +50,7 @@ export const activities = [
     description: 'Hands-on training that helps students lead projects, teams, and conversations with honesty and fairness.',
     date: null,
     status: 'To Be Announced',
-    image: 'https://images.pexels.com/photos/8276670/pexels-photo-8276670.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    image: '/image/activities/leadership.jpg',
     imageAlt: 'A facilitator presenting during a training session',
     details: ['Led by experienced student leaders', 'Practice running fair team meetings', 'Certificate of participation'],
   },
@@ -61,7 +61,7 @@ export const activities = [
     description: 'A student debate encouraging critical thinking, ethical reasoning, and respectful discussion.',
     date: null,
     status: 'To Be Announced',
-    image: 'https://images.pexels.com/photos/17558082/pexels-photo-17558082.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    image: '/image/activities/competition.jpg',
     imageAlt: 'A student speaking into a microphone during a debate',
     details: ['Teams formed across generations', 'Judged on reasoning and respect, not volume', 'Audience questions welcome'],
   },
@@ -72,7 +72,7 @@ export const activities = [
     description: 'Activities that encourage students to support their community and demonstrate responsibility through action.',
     date: null,
     status: 'To Be Announced',
-    image: 'https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    image: '/image/activities/community.jpg',
     imageAlt: 'Volunteers distributing supplies to people in need',
     details: ['Volunteer teams organized by generation', 'Partner organizations confirmed before the event', 'Light refreshments provided'],
   },
@@ -83,7 +83,7 @@ export const activities = [
     description: 'Open conversations where students share perspectives about integrity, dignity, and ethical challenges.',
     date: null,
     status: 'To Be Announced',
-    image: 'https://images.pexels.com/photos/8199558/pexels-photo-8199558.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    image: '/image/activities/discussion.jpg',
     imageAlt: 'Students engaged in a small-group discussion',
     details: ['Moderated small-group discussions', 'Anonymous question box', 'Open to the whole campus'],
   },

@@ -1,3 +1,4 @@
+
 import { members, generations } from './data/members.js';
 import {
   activities,
@@ -106,67 +107,87 @@ function valueCard(value, index) {
 }
 
 function activityCard(activity, index) {
+  const details = activity.details ?? [];
   return `
-    <article class="activity-card reveal card-lift flex flex-col overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-sm" style="transition-delay: ${index * 80}ms">
-      <div class="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
-        <img src="${escapeHtml(activity.image)}" alt="${escapeHtml(activity.imageAlt)}" loading="lazy" class="h-full w-full object-cover transition duration-500 activity-image" />
-        <span class="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-navy-800 shadow-sm">${escapeHtml(activity.category)}</span>
+    <article class="activity-card card-lift flex flex-col overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-sm" style="animation-delay: ${index * 70}ms">
+      <div class="relative aspect-[4/3] overflow-hidden rounded-t-2xl bg-gradient-to-br from-navy-200 to-navy-400">
+        <img src="${escapeHtml(activity.image)}" alt="${escapeHtml(activity.imageAlt)}" loading="lazy" onerror="this.remove()" class="activity-image h-full w-full object-cover transition duration-500 hover:scale-105" />
+        <span class="absolute left-4 top-4 rounded-full bg-white/95 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-navy-800 shadow-sm">${escapeHtml(activity.category)}</span>
       </div>
-      <div class="flex flex-1 flex-col p-6">
+      <div class="flex flex-1 flex-col p-6 sm:p-7">
         <p class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-600">
           <i data-lucide="calendar" class="h-4 w-4"></i>${escapeHtml(activity.date ?? activity.status)}
         </p>
-        <h3 class="mt-3 font-display text-xl font-bold leading-snug text-navy-900">${escapeHtml(activity.title)}</h3>
-        <p class="mt-3 text-sm leading-relaxed text-navy-600">${escapeHtml(activity.description)}</p>
-        <details class="group mt-auto border-t border-navy-100 pt-4 [&:not([open])]:mt-6">
-          <summary class="flex cursor-pointer items-center justify-between text-sm font-semibold text-navy-700">
-            Details
-            <i data-lucide="plus" class="h-4 w-4 transition duration-300 group-open:rotate-45"></i>
+        <h3 class="mt-3 font-display text-2xl font-bold leading-snug text-navy-900">${escapeHtml(activity.title)}</h3>
+        <p class="mt-3 leading-relaxed text-navy-600">${escapeHtml(activity.description)}</p>
+        ${
+          details.length
+            ? `<details class="group mt-auto pt-6">
+          <summary class="inline-flex cursor-pointer list-none items-center gap-2 rounded-full border border-navy-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 shadow-sm transition hover:border-navy-400 hover:bg-navy-50 [&::-webkit-details-marker]:hidden">
+            View details
+            <i data-lucide="arrow-right" class="h-4 w-4 transition duration-300 group-open:rotate-90"></i>
           </summary>
-          <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-navy-600">
-            ${activity.details.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+          <ul class="mt-4 list-disc space-y-1 pl-5 text-sm text-navy-600">
+            ${details.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
-        </details>
+        </details>`
+            : ''
+        }
       </div>
     </article>`;
 }
 
+function activitiesIn(category) {
+  return category === 'All' ? activities : activities.filter((activity) => activity.category === category);
+}
+
 function renderActivityFilters(activeCategory) {
   document.getElementById('activities-filters').innerHTML = activityCategories
-    .map(
-      (category) => `
-      <button type="button" data-category="${escapeHtml(category)}" aria-pressed="${category === activeCategory}"
-        class="activity-filter ${category === activeCategory ? 'is-active' : ''}">${escapeHtml(category)}</button>`,
-    )
+    .map((category) => {
+      const active = category === activeCategory;
+      const look = active
+        ? 'border-navy-900 bg-navy-900 text-white shadow-md'
+        : 'border-navy-200 bg-white text-navy-700 hover:-translate-y-0.5 hover:border-navy-400 hover:bg-navy-50';
+      const badge = active ? 'bg-gold-500 text-navy-900' : 'bg-navy-100 text-navy-600';
+      return `<button type="button" data-category="${escapeHtml(category)}" aria-pressed="${active}" class="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition duration-200 ${look}">${escapeHtml(category)}<span class="grid h-5 min-w-[1.25rem] place-items-center rounded-full px-1.5 text-xs font-bold ${badge}">${activitiesIn(category).length}</span></button>`;
+    })
     .join('');
 }
 
 function renderActivityGrid(category) {
-  const visible = category === 'All' ? activities : activities.filter((activity) => activity.category === category);
-  document.getElementById('activities-grid').innerHTML = visible.map(activityCard).join('');
+  const visible = activitiesIn(category);
+  document.getElementById('activities-grid').innerHTML = visible.length
+    ? visible.map(activityCard).join('')
+    : '<p class="col-span-full rounded-2xl bg-white p-8 text-center text-navy-500">No activities in this category yet.</p>';
+  const status = document.getElementById('activities-status');
+  if (status) {
+    status.textContent =
+      category === 'All'
+        ? `Showing all ${activities.length} activities`
+        : `Showing ${visible.length} of ${activities.length} activities in ${category}`;
+  }
   window.lucide?.createIcons();
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    },
-    { threshold: 0.15 },
-  );
-  document.querySelectorAll('#activities-grid .reveal').forEach((item) => observer.observe(item));
 }
 
 function initActivityFilters() {
   let activeCategory = 'All';
   const filters = document.getElementById('activities-filters');
+
+  if (!document.getElementById('activities-status')) {
+    filters.insertAdjacentHTML(
+      'afterend',
+      '<p id="activities-status" class="mt-6 text-center text-sm font-medium text-navy-500" role="status" aria-live="polite"></p>',
+    );
+  }
+
   filters.addEventListener('click', (event) => {
     const button = event.target.closest('button[data-category]');
     if (!button || button.dataset.category === activeCategory) return;
     activeCategory = button.dataset.category;
     renderActivityFilters(activeCategory);
     renderActivityGrid(activeCategory);
+    // The chips were redrawn, so give keyboard focus back to the one that was pressed.
+    [...filters.querySelectorAll('button[data-category]')].find((b) => b.dataset.category === activeCategory)?.focus();
   });
   renderActivityFilters(activeCategory);
   renderActivityGrid(activeCategory);
